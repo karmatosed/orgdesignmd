@@ -2,6 +2,8 @@
 
 This repo documents the **WordPress.org federated visual brand** in [DESIGN.md](DESIGN.md) format. Use it when building UI that should match a specific wordpress.org property.
 
+Human setup and consumer-repo patterns: [`CONTRIBUTING.md`](CONTRIBUTING.md#using-designmd-with-agents).
+
 ## What to load
 
 | Task | Read |
@@ -9,8 +11,35 @@ This repo documents the **WordPress.org federated visual brand** in [DESIGN.md](
 | Tokens, colors, spacing, lint/export | [`DESIGN.md`](DESIGN.md) only |
 | Work on one property (Showcase, Forums, Jobs, …) | [`DESIGN.md`](DESIGN.md) + [`stacks/{section}.md`](stacks/README.md) |
 | Pick the section file | [`stacks/README.md`](stacks/README.md) index |
+| Unfamiliar with DESIGN.md YAML format | `npx @google/design.md spec` ([upstream spec](https://github.com/google-labs-code/design.md)) |
 
 **Always start with `DESIGN.md`.** Section files are supplementary prose — not DESIGN.md format, not lint targets, no YAML tokens.
+
+**Do not** load every file in `stacks/` unless the task spans multiple properties. One section file per task keeps context accurate.
+
+## How to apply DESIGN.md
+
+1. **Read YAML first** — use `{colors.primary}`, `{typography.body-md}`, `{rounded.sm}` etc. from the front matter; don't guess hex or font sizes.
+2. **Read section stack second** — heroes, grid width, component behavior, and Do's for that property live in `stacks/{section}.md` and **override** generic wporg prose when they conflict.
+3. **Use component tokens** — prefer named components (`showcase-site-screenshot`, `plugins-job-card`) over re-inventing styles from raw colors.
+4. **Respect Do's** — global rules in `DESIGN.md`; section rules in the stack file. Both apply; section wins on conflicts.
+
+### Section → file
+
+| Property | Stack file |
+|:---------|:-----------|
+| Main | [`stacks/main.md`](stacks/main.md) |
+| News | [`stacks/news.md`](stacks/news.md) |
+| Showcase | [`stacks/showcase.md`](stacks/showcase.md) |
+| Plugins | [`stacks/plugins.md`](stacks/plugins.md) |
+| Themes | [`stacks/themes.md`](stacks/themes.md) → also [`plugins.md`](stacks/plugins.md) |
+| About / Blocks / Enterprise | [`about.md`](stacks/about.md) / [`blocks.md`](stacks/blocks.md) / [`enterprise.md`](stacks/enterprise.md) |
+| Patterns / Photos / Learn | [`patterns.md`](stacks/patterns.md) / [`photos.md`](stacks/photos.md) / [`learn.md`](stacks/learn.md) |
+| Documentation / Forums / Developer | [`documentation.md`](stacks/documentation.md) / [`forums.md`](stacks/forums.md) / [`developer.md`](stacks/developer.md) |
+| Five for the Future / Events / Make | [`five-for-the-future.md`](stacks/five-for-the-future.md) / [`events.md`](stacks/events.md) / [`make.md`](stacks/make.md) |
+| Profiles / Jobs | [`profiles.md`](stacks/profiles.md) / [`jobs.md`](stacks/jobs.md) |
+
+Full index: [`stacks/README.md`](stacks/README.md).
 
 ## Architecture (important)
 
@@ -35,10 +64,12 @@ Section-specific rules in `stacks/*.md` **override** generic wporg defaults. Exa
 
 ```bash
 npm install
-npm run design:lint          # required after DESIGN.md token edits
+npm run design:lint          # required after DESIGN.md token edits — 0 errors
 npm run design:export:tailwind   # optional — Tailwind v4 @theme
 npm run design:export:dtcg         # optional — W3C tokens.json
 ```
+
+Run `npm run design:lint` after token edits. Do not claim tokens are valid without linter output showing 0 errors.
 
 ## Global guardrails (from DESIGN.md)
 
@@ -48,4 +79,4 @@ npm run design:export:dtcg         # optional — W3C tokens.json
 - Don't apply Showcase screenshot frames to directory UI.
 - Profiles: use `profiles-*` tokens and `badge-*` for medals — not wporg `headline-*` / `charcoal-*` in body UI.
 
-Full rationale and research: [`README.md`](README.md).
+Full rationale and research: [`README.md`](README.md). Contributor workflow: [`CONTRIBUTING.md`](CONTRIBUTING.md).

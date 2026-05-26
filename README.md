@@ -20,7 +20,7 @@ This repo captures WordPress.org's shared design language so agents can build UI
 
 Load **`DESIGN.md` only** for the full system, or **`DESIGN.md` + one section file** (e.g. `stacks/showcase.md`) when working on a single property. Section files do not inherit tokens automatically — they reference `DESIGN.md` by convention.
 
-**Agents:** operational guide in [`AGENTS.md`](AGENTS.md).
+**Agents:** operational guide in [`AGENTS.md`](AGENTS.md). **Contributors:** editing tokens and sections in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Demo
 
@@ -334,6 +334,7 @@ stacks/                Per-section supplementary guides (not DESIGN.md format)
 package.json           Lint and export scripts
 README.md              This file
 AGENTS.md              Agent operational guide
+CONTRIBUTING.md        How to edit DESIGN.md and stack files
 license.txt            GPLv2 or later (same as WordPress)
 demo/                  Visual sample (`demo.html`)
 ```
