@@ -1,0 +1,14 @@
+{
+  "name": "orgdesignmd",
+  "private": true,
+  "description": "Organizational design resource site — design system powered by DESIGN.md",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "design:lint": "npx @google/design.md lint DESIGN.md",
+    "design:export:tailwind": "npx @google/design.md export --format css-tailwind DESIGN.md > theme.css",
+    "design:export:dtcg": "npx @google/design.md export --format dtcg DESIGN.md > tokens.json"
+  },
+  "devDependencies": {
+    "@google/design.md": "^0.1.0"
+  }
+}
